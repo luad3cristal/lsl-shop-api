@@ -1,4 +1,4 @@
-package com.lsl_shop.shop;
+package com.LSLshop.auth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class ProductShopServiceApplication {
+public class AuthUserServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProductShopServiceApplication.class, args);
+		SpringApplication.run(AuthUserServiceApplication.class, args);
 	}
 
 }
