@@ -1,4 +1,4 @@
-package com.LSLshop.gateway;
+package com.lslshop.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
