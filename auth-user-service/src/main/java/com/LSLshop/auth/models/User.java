@@ -35,4 +35,32 @@ public class User {
   private LocalDateTime createdAt;
 
   private boolean active = true;
+
+  public Long getId() {
+    return this.id;
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public String getEmail() {
+    return this.email;
+  }
+
+  public String getPassword() {
+    return this.password;
+  }
+
+  public Role getRole() {
+    return this.role;
+  }
+
+  public LocalDateTime getCreatedAt() {
+    return this.createdAt;
+  }
+
+  public boolean isActive() {
+    return this.active;
+  }
 }
