@@ -68,23 +68,23 @@ public class User {
     return this.role;
   }
 
-  public void setRole() {
-    this.role = Role.USER;
+  public void setRole(Role role) {
+    this.role = role;
   }
 
   public LocalDateTime getCreatedAt() {
     return this.createdAt;
   }
 
-  public void setCreatedAt() {
-    this.createdAt = LocalDateTime.now();
+  public void setCreatedAt(LocalDateTime createdAt) {
+    this.createdAt = createdAt;
   }
 
   public boolean isActive() {
     return this.active;
   }
 
-  public void deactivate() {
-    this.active = false;
+  public void setActivate(boolean active) {
+    this.active = active;
   }
 }
