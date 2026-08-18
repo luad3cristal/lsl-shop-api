@@ -2,6 +2,7 @@ package com.lslshop.auth.repository;
 
 import com.lslshop.auth.models.User;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,11 +14,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
   Optional<User> findByEmailAndActiveTrue(String email);
 
-  Optional<User> findAllByActiveTrue();
+  List<User> findAllByActiveTrue();
 
   boolean existsByEmail(String email);
-  
+
   boolean existsByEmailAndActiveTrue(String email);
-  
+
   boolean existsByIdAndActiveTrue(Long id);
 }
