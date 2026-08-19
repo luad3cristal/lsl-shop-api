@@ -3,7 +3,7 @@ package com.lslshop.auth.exception;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.hc.core5.http.HttpStatus;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -61,7 +61,7 @@ public class GlobalExceptionHandler {
   public ResponseEntity<ErrorResponse> handleGenericException(Exception ex) {
     ErrorResponse error = new ErrorResponse("INTERNAL_ERROR", "An unexpected error ocurred: " + ex.getMessage(), 500);
 
-    return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(error);
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
   }
 
 }
