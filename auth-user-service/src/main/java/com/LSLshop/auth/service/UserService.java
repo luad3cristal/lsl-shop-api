@@ -61,7 +61,7 @@ public class UserService {
   public UserResponse getUserResponseByEmail(String email) {
     return UserMapper.toResponse(getUserByEmail(email));
   }
-
+  
   // Soft delete do usuário
   @Transactional
   public void deactivateCurrentUser() {
@@ -105,6 +105,23 @@ public class UserService {
     User updatedUser = userRepository.save(user);
 
     return UserMapper.toResponse(updatedUser);
+  }
+
+  // Métodos para o ADMIN
+  // Desativa um usuário
+  @Transactional
+  public void deactivateUser(Long userId) {
+    User user = getUserById(userId);
+    user.setActivate(false);
+    userRepository.save(user);
+  }
+
+  // Reativa um usuário
+  @Transactional
+  public void activateUser(Long userId) {
+    User user = getUserById(userId);
+    user.setActivate(true);
+    userRepository.save(user);
   }
 
 }
