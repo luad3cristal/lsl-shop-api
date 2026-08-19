@@ -6,9 +6,12 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.lslshop.auth.dto.request.UpdateProfileRequest;
 import com.lslshop.auth.dto.response.UserResponse;
+import com.lslshop.auth.exception.DuplicateUserException;
 import com.lslshop.auth.exception.UserNotFoundException;
 import com.lslshop.auth.mapper.UserMapper;
 import com.lslshop.auth.models.User;
@@ -22,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 public class UserService {
 
   private final UserRepository userRepository;
+  private final PasswordEncoder passwordEncoder;
 
   // Usuário autenticado
   public User getCurrentUserEntity() {
@@ -60,7 +64,7 @@ public class UserService {
 
   // Soft delete do usuário
   @Transactional
-  public void deactivateCurrentUser () {
+  public void deactivateCurrentUser() {
     User user = getCurrentUserEntity();
     user.setActivate(false);
     userRepository.save(user);
@@ -72,7 +76,7 @@ public class UserService {
   }
 
   // verifica se o usuário existe e está ativo
-  public boolean existsById (Long userId) {
+  public boolean existsById(Long userId) {
     return userRepository.existsByIdAndActiveTrue(userId);
   }
 
@@ -81,5 +85,26 @@ public class UserService {
     return !userRepository.existsByEmailAndActiveTrue(email);
   }
 
+  // Atualiza o perfil do usuário
+  public UserResponse updateProfile(UpdateProfileRequest request) {
+    User user = getCurrentUserEntity();
+
+    if (request.name() != null && !request.name().isBlank())
+      user.setName(request.name());
+
+    if (request.email() != null && !request.email().isBlank() && !request.email().equals(user.getEmail())) {
+      if (isEmailAvailable(request.email()))
+        throw new DuplicateUserException(request.email());
+
+      user.setEmail(request.email());
+    }
+
+    if (request.password() != null && !request.password().isBlank())
+      user.setPassword(passwordEncoder.encode(request.password()));
+
+    User updatedUser = userRepository.save(user);
+
+    return UserMapper.toResponse(updatedUser);
+  }
 
 }
