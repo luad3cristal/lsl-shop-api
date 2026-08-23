@@ -61,7 +61,7 @@ public class UserService {
   public UserResponse getUserResponseByEmail(String email) {
     return UserMapper.toResponse(getUserByEmail(email));
   }
-  
+
   // Soft delete do usuário
   @Transactional
   public void deactivateCurrentUser() {
@@ -93,7 +93,7 @@ public class UserService {
       user.setName(request.name());
 
     if (request.email() != null && !request.email().isBlank() && !request.email().equals(user.getEmail())) {
-      if (isEmailAvailable(request.email()))
+      if (!isEmailAvailable(request.email()))
         throw new DuplicateUserException(request.email());
 
       user.setEmail(request.email());
