@@ -1,4 +1,4 @@
-package com.lsl_shop.auth;
+package com.lslshop.auth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

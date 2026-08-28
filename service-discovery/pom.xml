@@ -8,8 +8,8 @@
 		<version>4.0.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.lsl-shop</groupId>
-	<artifactId>service-discovery</artifactId>
+	<groupId>com.lslshop</groupId>
+	<artifactId>servicediscovery</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>service-discovery</name>
 	<description>API da LSL.Shop - E-commerce com Spring Boot</description>
